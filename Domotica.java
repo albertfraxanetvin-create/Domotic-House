@@ -6,13 +6,14 @@ public class Domotica {
     static boolean h3 = false; // cortines
     static boolean h4 = false; // forn
     static boolean h5 = false; // cameres
+    static int quantitat = 0; // temperatura inicial
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         boolean continuar = true;
         while (continuar) {
             System.out.println("Menu Domotica");
             System.out.println("1. Consulta estat de les llums"); //funcionalitat completa
-            System.out.println("2. Consulta la temperatura de les habitacions"); //funcionalitat en procés
+            System.out.println("2. Consulta la temperatura de les habitacions"); //funcionalitat completa
             System.out.println("3. Consulta l'estat de les cortines"); //funcionalitat pendent
             System.out.println("4. Consulta l'estat del forn"); //funcionalitat pendent
             System.out.println("5. Consulta l'estat de les càmeres de seguretat"); //funcionalitat pendent
@@ -163,13 +164,13 @@ public class Domotica {
             int seleccio = scanner.nextInt();
             switch (seleccio) {
                 case 1:
-                    // Implementar consulta de temperatura
+                    consultaTemperatura();
                     break;
                 case 2:
-                    // Implementar canvi de temperatura
+                    augmentarTemperatura();
                     break;
                 case 3:
-                    // Implementar canvi de temperatura
+                    disminuirTemperatura();
                     break;
                 case 4:
                     opcio = false;
@@ -181,4 +182,68 @@ public class Domotica {
         }
 
     }
+   public static void consultaTemperatura() {
+    System.out.println("La temperatura actual és de: " + quantitat + "°C");
+}
+
+public static void augmentarTemperatura() {
+    boolean opcio = true;
+    while (opcio) {
+        System.out.println("Menu Augmentar Temperatura: ");
+        System.out.println("1. Augmentar 1 grau");
+        System.out.println("2. Escollir quantitat a augmentar");
+        System.out.println("3. Sortir");
+        int seleccio = scanner.nextInt();
+        switch (seleccio) {
+            case 1:
+                quantitat += 1; 
+                System.out.println("La temperatura s'ha augmentat en 1 grau.");
+                System.out.println("Temperatura actual: " + quantitat + "°C");
+                break;
+            case 2:
+                System.out.println("Introdueix la quantitat a augmentar:");
+                int quantitatAugment = scanner.nextInt();
+                quantitat += quantitatAugment; 
+                System.out.println("La temperatura s'ha augmentat en " + quantitatAugment + " graus.");
+                System.out.println("Temperatura actual: " + quantitat + "°C");
+                break;
+            case 3:
+                opcio = false;
+                System.out.println("Sortint del menu d'augmentar temperatura");
+                break;
+            default:
+                System.out.println("Selecció no vàlida. Torna-ho a intentar.");
+        }
+    }
+}
+public static void disminuirTemperatura() {
+    boolean opcio = true;
+    while (opcio) {
+        System.out.println("Menu Disminuir Temperatura: ");
+        System.out.println("1. Disminuir 1 grau");
+        System.out.println("2. Escollir quantitat a disminuir");
+        System.out.println("3. Sortir");
+        int seleccio = scanner.nextInt();
+        switch (seleccio) {
+            case 1:
+                quantitat -= 1;
+                System.out.println("La temperatura s'ha disminuït en 1 grau.");
+                System.out.println("Temperatura actual: " + quantitat + "°C");
+                break;
+            case 2:
+                System.out.println("Introdueix la quantitat a disminuir:");
+                int quantitatDisminuir = scanner.nextInt();
+                quantitat -= quantitatDisminuir; 
+                System.out.println("La temperatura s'ha disminuït en " + quantitatDisminuir + " graus.");
+                System.out.println("Temperatura actual: " + quantitat + "°C");
+                break;
+            case 3:
+                opcio = false;
+                System.out.println("Sortint del menu de disminuir temperatura");
+                break;
+            default:
+                System.out.println("Selecció no vàlida. Torna-ho a intentar.");
+        }
+    }
+}
 }
