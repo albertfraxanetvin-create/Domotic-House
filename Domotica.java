@@ -20,7 +20,7 @@ public class Domotica {
             int seleccio = scanner.nextInt();
             switch (seleccio) {
                 case 1:
-                    menuLlums();
+                    menuLlumsHabitacio();
                     break;
                 case 6:
                     continuar = false;
@@ -29,6 +29,46 @@ public class Domotica {
                 default:
                     System.out.println("Opció no vàlida.");
                     break;
+            }
+        }
+    }
+    public static void menuLlumsHabitacio() {
+        boolean opcio = true;
+        while (opcio) {
+            System.out.println("Menu Llums Habitació: ");
+            System.out.println("1. Menjador");
+            System.out.println("2. Bany");
+            System.out.println("3. Cuina");
+            System.out.println("4. Habitació 1");
+            System.out.println("5. Habitació 2");
+            System.out.println("6. Habitació 3");
+            System.out.println("7. Sortir");
+            int seleccio = scanner.nextInt();
+            switch (seleccio) {
+                case 1:
+                    menuLlums();
+                    break;
+                case 2:
+                    menuLlums();
+                    break;
+                case 3:
+                    menuLlums();
+                    break;
+                case 4:
+                    menuLlums();
+                    break;
+                case 5:
+                    menuLlums();   
+                    break;
+                case 6:
+                    menuLlums();
+                    break;
+                case 7:
+                    opcio = false;
+                    System.out.println("Sortint del menu de llums habitació");
+                    break;
+                default:
+                    System.out.println("Selecció no vàlida. Torna-ho a intentar.");
             }
         }
     }
