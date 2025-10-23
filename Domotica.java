@@ -26,6 +26,9 @@ public class Domotica {
                 case 2:
                     temperaturaHabitacio();
                     break;
+                case 3:
+                    menuCortines();
+                    break;
                 case 6:
                     continuar = false;
                     System.out.println("Sortint del menú domòtica...");
@@ -245,5 +248,144 @@ public static void disminuirTemperatura() {
                 System.out.println("Selecció no vàlida. Torna-ho a intentar.");
         }
     }
+}
+public static void menuCortines() {
+   boolean opcio = true;
+   while (opcio) {
+    System.out.println("Menu Cortines:");
+    System.out.println("1. Consulta estat de les cortines");
+    System.out.println("2. Escollir habitació de les cortines");
+    System.out.println("3. Obrir/Tancar totes les cortines");
+    System.out.println("4. Sortir");
+    int seleccio = scanner.nextInt();
+    switch (seleccio) {
+        case 1:
+            estatCortines();
+            break;
+        case 2:
+            cortinesHabitacio();
+            break;
+        case 3:
+            if (h3) {
+                h3 = false;
+                System.out.println("Totes les cortines s'han tancat.");
+            } else {
+                h3 = true;
+                System.out.println("Totes les cortines s'han obert.");
+            }
+            break;
+        case 4:
+            opcio = false;
+            System.out.println("Sortint del menu de cortines");
+            break;
+        default:
+            System.out.println("Selecció no vàlida. Torna-ho a intentar.");
+        }
+}
+}
+public static void cortinesHabitacio() {
+    boolean opcio = true;
+    while (opcio) {
+        System.out.println("Menu Cortines Habitació: ");
+        System.out.println("1. Menjador");
+        System.out.println("2. Bany");
+        System.out.println("3. Cuina");
+        System.out.println("4. Habitació 1");
+        System.out.println("5. Habitació 2");
+        System.out.println("6. Habitació 3");
+        System.out.println("7. Sortir");
+        int seleccio = scanner.nextInt();
+        switch (seleccio) {
+            case 1:
+                cortinesUnaHabitacio();
+                break;
+            case 2:
+                estatCortines();
+                break;
+            case 3:
+                cortinesUnaHabitacio();
+                break;
+            case 4:
+                cortinesUnaHabitacio();
+                break;
+            case 5:
+                cortinesUnaHabitacio();   
+                break;
+            case 6:
+                cortinesUnaHabitacio();
+                break;
+            case 7:
+                opcio = false;
+                System.out.println("Sortint del menu de cortines habitació");
+                break;
+            default:
+                System.out.println("Selecció no vàlida. Torna-ho a intentar.");
+        }
+    }
+}
+public static void cortinesUnaHabitacio() {
+    boolean opcio = true;
+    while (opcio) {
+        System.out.println("Menu Finestres: ");
+        System.out.println("1. Finestra 1");
+        System.out.println("2. Finestra 2");
+        System.out.println("3. Finestra 3");
+        System.out.println("4. Sortir");
+        int seleccio = scanner.nextInt();
+        switch (seleccio) {
+            case 1:
+                tancarObrir();
+                break;
+            case 2:
+                tancarObrir();
+                break;
+            case 3:
+                tancarObrir();
+                break;
+            case 4:
+                opcio = false;
+                System.out.println("Sortint del menu de finestres");
+                break;
+            default:
+                System.out.println("Selecció no vàlida. Torna-ho a intentar.");
+    }
+}
+}
+public static void tancarObrir() {
+    boolean opcio = true;
+    while (opcio) {
+        System.out.println("Menu Tancar/Obrir Cortines: ");
+        System.out.println("1. Estat de la cortina"); 
+        System.out.println("2. Obrir cortina");
+        System.out.println("3. Tancar cortina");
+        System.out.println("4. Sortir");
+        int seleccio = scanner.nextInt();
+        switch (seleccio) {
+            case 1:
+                estatCortines();
+                break;
+            case 2:
+                h3 = true;
+                System.out.println("La cortina s'ha obert.");
+                break;
+            case 3:
+                h3 = false;
+                System.out.println("La cortina s'ha tancat.");
+                break;
+            case 4:
+                opcio = false;
+                System.out.println("Sortint del menu de tancar/obrir cortines");
+                break;
+            default:
+                System.out.println("Selecció no vàlida. Torna-ho a intentar.");
+        }
+    }
+}
+public static void estatCortines() { //Menu extra (No esta en el drive, pero crec que es util i millora la qualitat).
+     if (h3) {
+         System.out.println("Les/La cortines estan obertes.");
+     } else {
+         System.out.println("Les/La cortines estan tancades.");
+     } 
 }
 }
