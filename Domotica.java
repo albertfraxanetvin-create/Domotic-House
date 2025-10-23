@@ -6,9 +6,12 @@ public class Domotica {
     static boolean h3 = false; // cortines
     static boolean h4 = false; // forn
     static boolean h5 = false; // cameres
-    static int quantitat = 0; // temperatura inicial
+    // variables forn (estat forn, temperatura, temporitzador, mode cocció, apagada automàtica)
+    static int quantitatTemperatura = 0; // temperatura inicial
     static int quantitatForn = 0; // temperatura forn inicial
     static int temporitzadorForn = 0; // temporitzador forn inicial
+    static String modeCocio = ""; // mode de cocció inicial
+    static int temporitzadorApagatForn = 0; // temporitzador apagada automàtica forn inicial
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         boolean continuar = true;
@@ -17,7 +20,7 @@ public class Domotica {
             System.out.println("1. Consulta estat de les llums"); //funcionalitat completa
             System.out.println("2. Consulta la temperatura de les habitacions"); //funcionalitat completa
             System.out.println("3. Consulta l'estat de les cortines"); //funcionalitat completa
-            System.out.println("4. Consulta l'estat del forn"); //funcionalitat en construcció
+            System.out.println("4. Consulta l'estat del forn"); //funcionalitat completa
             System.out.println("5. Consulta l'estat de les càmeres de seguretat"); //funcionalitat pendent
             System.out.println("6. Sortir");
             int seleccio = scanner.nextInt();
@@ -44,6 +47,9 @@ public class Domotica {
             }
         }
     }
+
+    // Inici funcions llums
+
     public static void menuLlumsHabitacio() {
         boolean opcio = true;
         while (opcio) {
@@ -121,6 +127,9 @@ public class Domotica {
             System.out.println("Les llums estan apagades");
         }
     }
+
+    // Inici funcions temperatura
+
     public static void temperaturaHabitacio() {
         boolean opcio = true;
         while (opcio) {
@@ -191,7 +200,7 @@ public class Domotica {
 
     }
    public static void consultaTemperatura() {
-    System.out.println("La temperatura actual és de: " + quantitat + "°C");
+    System.out.println("La temperatura actual és de: " + quantitatTemperatura + "°C");
 }
 
 public static void augmentarTemperatura() {
@@ -204,16 +213,16 @@ public static void augmentarTemperatura() {
         int seleccio = scanner.nextInt();
         switch (seleccio) {
             case 1:
-                quantitat += 1; 
+                quantitatTemperatura += 1; 
                 System.out.println("La temperatura s'ha augmentat en 1 grau.");
-                System.out.println("Temperatura actual: " + quantitat + "°C");
+                System.out.println("Temperatura actual: " + quantitatTemperatura + "°C");
                 break;
             case 2:
                 System.out.println("Introdueix la quantitat a augmentar:");
                 int quantitatAugment = scanner.nextInt();
-                quantitat += quantitatAugment; 
+                quantitatTemperatura += quantitatAugment; 
                 System.out.println("La temperatura s'ha augmentat en " + quantitatAugment + " graus.");
-                System.out.println("Temperatura actual: " + quantitat + "°C");
+                System.out.println("Temperatura actual: " + quantitatTemperatura + "°C");
                 break;
             case 3:
                 opcio = false;
@@ -234,16 +243,16 @@ public static void disminuirTemperatura() {
         int seleccio = scanner.nextInt();
         switch (seleccio) {
             case 1:
-                quantitat -= 1;
+                quantitatTemperatura -= 1;
                 System.out.println("La temperatura s'ha disminuït en 1 grau.");
-                System.out.println("Temperatura actual: " + quantitat + "°C");
+                System.out.println("Temperatura actual: " + quantitatTemperatura + "°C");
                 break;
             case 2:
                 System.out.println("Introdueix la quantitat a disminuir:");
                 int quantitatDisminuir = scanner.nextInt();
-                quantitat -= quantitatDisminuir; 
+                quantitatTemperatura -= quantitatDisminuir; 
                 System.out.println("La temperatura s'ha disminuït en " + quantitatDisminuir + " graus.");
-                System.out.println("Temperatura actual: " + quantitat + "°C");
+                System.out.println("Temperatura actual: " + quantitatTemperatura + "°C");
                 break;
             case 3:
                 opcio = false;
@@ -254,6 +263,9 @@ public static void disminuirTemperatura() {
         }
     }
 }
+
+// Inici funcions cortines
+
 public static void menuCortines() {
    boolean opcio = true;
    while (opcio) {
@@ -393,6 +405,9 @@ public static void estatCortines() { //Menu extra (No esta en el drive, pero cre
          System.out.println("Les/La cortines estan tancades.");
      } 
 }
+
+// Inici funcions forn
+
 public static void menuForn() {
     boolean opcio = true;
     while (opcio) {
@@ -459,12 +474,29 @@ public static void funcioForn() {
                 System.out.println("Selecció no vàlida. Torna-ho a intentar.");
          }
          }
-}
+        }
 public static void estatForn() {
-    if (h4) {
-        System.out.println("El forn està encès.");
+    System.out.println("Estat actual del forn:");
+    if (h4) { // forn encès o apagat
+        System.out.println("Estat: Encès");
     } else {
-        System.out.println("El forn està apagat.");
+        System.out.println("Estat: Apagat");
+    }
+    System.out.println("Temperatura actual: " + quantitatForn + "°C"); // temperatura del forn
+    if (temporitzadorForn > 0) {
+        System.out.println("Temporitzador: " + temporitzadorForn + " minuts restants");
+    } else {
+        System.out.println("Temporitzador: No configurat");
+    }
+    if (modeCocio != null && !modeCocio.isEmpty()) { // mode de cocció
+        System.out.println("Mode de cocció: " + modeCocio);
+    } else {
+        System.out.println("Mode de cocció: No seleccionat");
+    }
+    if (temporitzadorApagatForn > 0) { // apagada automàtica
+        System.out.println("Apagada automàtica: " + temporitzadorApagatForn + " minuts");
+    } else {
+        System.out.println("Apagada automàtica: Desactivada");
     }
 }
 public static void temperaturaForn() {
@@ -615,6 +647,7 @@ public static void configurarTemporitzadorForn() {
                         System.out.println("Si us plau, introdueix un valor vàlid (0 o més).");
                     }
                 }
+                break;
             case 2:
                 while (true) {
                     System.out.println("Vols augmentar o disminuir el temps del temporitzador? (A/B):");
@@ -629,6 +662,7 @@ public static void configurarTemporitzadorForn() {
                         System.out.println("Si us plau, introdueix una opció vàlida (A/B).");
                     }
                 }
+                break;
             case 3:
                 pararTemporitzadorForn();
                 break;
@@ -726,22 +760,39 @@ public static void disminuirTempsTemporitzadorForn() {
     }
 }
 public static void pararTemporitzadorForn() {
-    // Funcionalitat en construcció.
+    temporitzadorForn = 0;
+    System.out.println("El temporitzador del forn s'ha cancel·lat.");
 }
 public static void modeCocio() {
     boolean opcio = true;
     while (opcio) {
-        System.out.println("Menu Mode de Cocció Forn: ");
-        System.out.println("1. Selecciona mode de cocció");
-        System.out.println("2. Sortir");
+        System.out.println("Menu Seleccionar Mode de Cocció Forn: ");
+        System.out.println("1. Mode Convecció");
+        System.out.println("2. Mode Grill");
+        System.out.println("3. Mode Descongelar");
+        System.out.println("4. Mode Eco");
+        System.out.println("5. Sortir");
         int seleccio = scanner.nextInt();
         switch (seleccio) {
             case 1:
-                System.out.println("Funcionalitat en construcció.");
+                modeCocio = "Convecció";
+                System.out.println("Has seleccionat el Mode Convecció.");
                 break;
             case 2:
+                modeCocio = "Grill";
+                System.out.println("Has seleccionat el Mode Grill.");
+                break;
+            case 3:
+                modeCocio = "Descongelar";
+                System.out.println("Has seleccionat el Mode Descongelar.");
+                break;
+            case 4:
+                modeCocio = "Eco";
+                System.out.println("Has seleccionat el Mode Eco.");
+                break;
+            case 5:
                 opcio = false;
-                System.out.println("Sortint del menu de mode de cocció del forn");
+                System.out.println("Sortint del menu de seleccionar mode de cocció del forn");
                 break;
             default:
                 System.out.println("Selecció no vàlida. Torna-ho a intentar.");
@@ -751,17 +802,32 @@ public static void modeCocio() {
 public static void apagarAutomaticForn() {
     boolean opcio = true;
     while (opcio) {
-        System.out.println("Menu Apagar Automàtic Forn: ");
-        System.out.println("1. Configura apagada automàtica");
-        System.out.println("2. Sortir");
+        System.out.println("Menu Configurar Apagada Automàtica Forn: ");
+        System.out.println("1. Determinar temps per apagada automàtica");
+        System.out.println("2. Desactivar apagada automàtica");
+        System.out.println("3. Sortir");
         int seleccio = scanner.nextInt();
         switch (seleccio) {
             case 1:
-                System.out.println("Funcionalitat en construcció.");
+                while (true) {
+                    System.out.println("Introdueix el temps per l'apagada automàtica en minuts:");
+                    int temps = scanner.nextInt();
+                    if (temps >= 0) {
+                        temporitzadorApagatForn = temps;
+                        System.out.println("L'apagada automàtica del forn s'ha configurat a " + temporitzadorApagatForn + " minuts.");
+                        break;
+                    } else {
+                        System.out.println("Si us plau, introdueix un valor vàlid (0 o més).");
+                    }
+                }
                 break;
             case 2:
+                temporitzadorApagatForn = 0;
+                System.out.println("L'apagada automàtica del forn s'ha desactivat.");
+                break;
+            case 3:
                 opcio = false;
-                System.out.println("Sortint del menu d'apagada automàtica del forn");
+                System.out.println("Sortint del menu de configurar apagada automàtica del forn");
                 break;
             default:
                 System.out.println("Selecció no vàlida. Torna-ho a intentar.");
