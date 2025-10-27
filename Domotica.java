@@ -17,11 +17,11 @@ public class Domotica {
         boolean continuar = true;
         while (continuar) {
             System.out.println("Menu Domotica");
-            System.out.println("1. Consulta estat de les llums"); //funcionalitat completa
-            System.out.println("2. Consulta la temperatura de les habitacions"); //funcionalitat completa
-            System.out.println("3. Consulta l'estat de les cortines"); //funcionalitat completa
-            System.out.println("4. Consulta l'estat del forn"); //funcionalitat completa
-            System.out.println("5. Consulta l'estat de les càmeres de seguretat"); //funcionalitat pendent
+            System.out.println("1. Consulta estat de les llums"); 
+            System.out.println("2. Consulta la temperatura de les habitacions"); 
+            System.out.println("3. Consulta l'estat de les cortines"); 
+            System.out.println("4. Consulta l'estat del forn"); 
+            System.out.println("5. Consulta l'estat de les càmeres de seguretat"); 
             System.out.println("6. Sortir");
             int seleccio = scanner.nextInt();
             switch (seleccio) {
@@ -36,6 +36,9 @@ public class Domotica {
                     break;
                 case 4:
                     menuForn();
+                    break;
+                case 5:
+                    menuCameresSeguretat();
                     break;
                 case 6:
                     continuar = false;
@@ -407,6 +410,7 @@ public static void estatCortines() { //Menu extra (No esta en el drive, pero cre
 }
 
 // Inici funcions forn
+// Nota: moltes d'aquestes funcions o menus no estaven contemplades en el drive, pero he considerat que eren necessaries per a un bon funcionament del forn.
 
 public static void menuForn() {
     boolean opcio = true;
@@ -828,6 +832,104 @@ public static void apagarAutomaticForn() {
             case 3:
                 opcio = false;
                 System.out.println("Sortint del menu de configurar apagada automàtica del forn");
+                break;
+            default:
+                System.out.println("Selecció no vàlida. Torna-ho a intentar.");
+        }
+    }
+}
+
+// funcions cameres de seguretat 
+
+public static void menuCameresSeguretat() {
+    System.out.println("Menu cameres de seguretat:");
+    System.out.println("1. Escollir habitació");
+    System.out.println("2. Encen/Apaga totes les cameres de seguretat");
+    System.out.println("3. Sortir");
+    int seleccio = scanner.nextInt();
+    switch (seleccio) { 
+        case 1:
+            cameresSeguretatHabitacio();
+            break;
+        case 2:
+            if (h5) {
+                h5 = false;
+                System.out.println("Totes les cameres de seguretat s'han apagat.");
+            } else {
+                h5 = true;
+                System.out.println("Totes les cameres de seguretat s'han encès.");
+            }
+            break;
+        case 3:
+            System.out.println("Sortint del menu de cameres de seguretat");
+            break;
+        default:
+            System.out.println("Selecció no vàlida. Torna-ho a intentar.");
+    }
+}
+public static void cameresSeguretatHabitacio() {
+    boolean opcio = true;
+    while (opcio) {
+    System.out.println("1. Menjador");
+    System.out.println("2. Bany");
+    System.out.println("3. Cuina");
+    System.out.println("4. Habitació 1");
+    System.out.println("5. Habitació 2");
+    System.out.println("6. Habitació 3");
+    System.out.println("7. Sortir");
+    int seleccio = scanner.nextInt();
+    switch (seleccio) {
+        case 1:
+            estatCameresSeguretat();
+            break;
+        case 2:
+            estatCameresSeguretat();
+            break;
+        case 3:
+            estatCameresSeguretat();
+            break;
+        case 4:
+            estatCameresSeguretat();
+            break;
+        case 5:
+            estatCameresSeguretat();   
+            break;
+        case 6:
+            estatCameresSeguretat();
+            break;
+        case 7:
+            opcio = false;
+            System.out.println("Sortint del menu de cameres de seguretat habitació");
+            break;
+        default:
+            System.out.println("Selecció no vàlida. Torna-ho a intentar.");
+    }
+}
+}
+public static void estatCameresSeguretat() {
+    boolean opcio = true;
+    while (opcio) {
+        System.out.println("Menu Estat Cameres de Seguretat: ");
+        System.out.println("1. Consulta video de la càmera de seguretat");
+        System.out.println("2. Encen/Apaga la càmera de seguretat");
+        System.out.println("3. Sortir");
+        int seleccio = scanner.nextInt();
+        switch (seleccio) {
+            case 1:
+                System.out.println("Mostrant video de la càmera de seguretat...");
+                break;
+            case 2:
+                if (h5) {
+                    h5 = false;
+                    System.out.println("La càmera de seguretat s'ha apagat.");
+                } else {
+                    h5 = true;
+                    System.out.println("La càmera de seguretat s'ha encès.");
+                }
+                break;
+            case 3:
+                opcio = false;
+                System.out.println("Sortint del menu d'estat de cameres de seguretat");
                 break;
             default:
                 System.out.println("Selecció no vàlida. Torna-ho a intentar.");
