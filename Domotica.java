@@ -1,3 +1,4 @@
+package Domotica;
 import java.util.Scanner;
 
 public class Domotica {
@@ -216,14 +217,16 @@ public static void augmentarTemperatura() {
         int seleccio = scanner.nextInt();
         switch (seleccio) {
             case 1:
-                quantitatTemperatura += 1; 
+                for (int i= 0; i<1; i++)
+                quantitatTemperatura ++;
                 System.out.println("La temperatura s'ha augmentat en 1 grau.");
                 System.out.println("Temperatura actual: " + quantitatTemperatura + "°C");
                 break;
             case 2:
                 System.out.println("Introdueix la quantitat a augmentar:");
                 int quantitatAugment = scanner.nextInt();
-                quantitatTemperatura += quantitatAugment; 
+                for (int i= 0; i < quantitatAugment; i++)
+                quantitatTemperatura ++; 
                 System.out.println("La temperatura s'ha augmentat en " + quantitatAugment + " graus.");
                 System.out.println("Temperatura actual: " + quantitatTemperatura + "°C");
                 break;
@@ -246,14 +249,16 @@ public static void disminuirTemperatura() {
         int seleccio = scanner.nextInt();
         switch (seleccio) {
             case 1:
-                quantitatTemperatura -= 1;
+            for (int i= 0; i<1; i++)
+                quantitatTemperatura --;
                 System.out.println("La temperatura s'ha disminuït en 1 grau.");
                 System.out.println("Temperatura actual: " + quantitatTemperatura + "°C");
                 break;
             case 2:
                 System.out.println("Introdueix la quantitat a disminuir:");
                 int quantitatDisminuir = scanner.nextInt();
-                quantitatTemperatura -= quantitatDisminuir; 
+                for (int i= 0; i <quantitatDisminuir; i++)
+                quantitatTemperatura --; 
                 System.out.println("La temperatura s'ha disminuït en " + quantitatDisminuir + " graus.");
                 System.out.println("Temperatura actual: " + quantitatTemperatura + "°C");
                 break;
@@ -440,7 +445,6 @@ public static void menuForn() {
             default:
                 System.out.println("Selecció no vàlida. Torna-ho a intentar.");
         }
-
     }  
 }
 public static void funcioForn() {
@@ -552,14 +556,16 @@ public static void augmentarTemperaturaForn() {
         int seleccio = scanner.nextInt();
         switch (seleccio) {
             case 1:
-                quantitatForn += 10; 
+            for (int i= 0; i <10; i ++)
+                quantitatForn ++;
                 System.out.println("La temperatura del forn s'ha augmentat en 10 graus.");
                 System.out.println("Temperatura actual del forn: " + quantitatForn + "°C");
                 break;
             case 2:
                 System.out.println("Introdueix la quantitat a augmentar:");
                 int quantitatAugment = scanner.nextInt();
-                quantitatForn += quantitatAugment; 
+                for (int i= 0; i <quantitatAugment; i++)
+                quantitatForn ++;
                 System.out.println("La temperatura del forn s'ha augmentat en " + quantitatAugment + " graus.");
                 System.out.println("Temperatura actual del forn: " + quantitatForn + "°C");
                 break;
@@ -582,14 +588,16 @@ public static void disminuirTemperaturaForn() {
         int seleccio = scanner.nextInt();
         switch (seleccio) {
             case 1:
-                quantitatForn -= 10;
+            for (int i= 0; i<10; i++)
+                quantitatForn --;
                 System.out.println("La temperatura del forn s'ha disminuït en 10 graus.");
                 System.out.println("Temperatura actual del forn: " + quantitatForn + "°C");
                 break;
             case 2:
                 System.out.println("Introdueix la quantitat a disminuir:");
                 int quantitatDisminuir = scanner.nextInt();
-                quantitatForn -= quantitatDisminuir; 
+                for (int i= 0; i <quantitatDisminuir; i++)
+                quantitatForn --;
                 System.out.println("La temperatura del forn s'ha disminuït en " + quantitatDisminuir + " graus.");
                 System.out.println("Temperatura actual del forn: " + quantitatForn + "°C");
                 break;
@@ -640,16 +648,16 @@ public static void configurarTemporitzadorForn() {
         int seleccio = scanner.nextInt();
         switch (seleccio) {
             case 1:
-                while (true) {
-                    System.out.println("Introdueix el temps del temporitzador en minuts:");
-                    int temps = scanner.nextInt();
-                    if (temps >= 0) {
-                        temporitzadorForn = temps;
-                        System.out.println("El temporitzador del forn s'ha configurat a " + temporitzadorForn + " minuts.");
-                        break;
-                    } else {
-                        System.out.println("Si us plau, introdueix un valor vàlid (0 o més).");
-                    }
+            for (;;) { 
+                System.out.println("Introdueix el temps del temporitzador en minuts:");
+                int temps = scanner.nextInt();
+                if (temps >= 0) {
+                     temporitzadorForn = temps;
+                     System.out.println("El temporitzador del forn s'ha configurat a " + temporitzadorForn + " minuts.");
+                     break; 
+                     } else {
+                         System.out.println("Si us plau, introdueix un valor vàlid (0 o més).");
+                     }
                 }
                 break;
             case 2:
@@ -691,24 +699,28 @@ static void augmentarTempsTemporitzadorForn() {
         int seleccio = scanner.nextInt();
         switch (seleccio) {
             case 1:
-                temporitzadorForn += 5; 
+            for (int i= 0; i<5; i++)
+                temporitzadorForn ++;
                 System.out.println("El temps del temporitzador del forn s'ha augmentat en 5 minuts.");
                 System.out.println("Temps actual del temporitzador del forn: " + temporitzadorForn + " minuts");
                 break;
             case 2:
-                temporitzadorForn += 10; 
+            for (int i= 0; i<10; i++)
+                temporitzadorForn ++;
                 System.out.println("El temps del temporitzador del forn s'ha augmentat en 10 minuts.");
                 System.out.println("Temps actual del temporitzador del forn: " + temporitzadorForn + " minuts");
                 break;
             case 3:
-                temporitzadorForn += 30; 
+            for (int i= 0; i<30; i++)
+                temporitzadorForn ++;
                 System.out.println("El temps del temporitzador del forn s'ha augmentat en 30 minuts.");
                 System.out.println("Temps actual del temporitzador del forn: " + temporitzadorForn + " minuts");
                 break;
             case 4:
                 System.out.println("Introdueix la quantitat a augmentar en minuts:");
                 int quantitatAugment = scanner.nextInt();
-                temporitzadorForn += quantitatAugment; 
+                for (int i= 0; i<quantitatAugment; i++)
+                temporitzadorForn ++;
                 System.out.println("El temps del temporitzador del forn s'ha augmentat en " + quantitatAugment + " minuts.");
                 System.out.println("Temps actual del temporitzador del forn: " + temporitzadorForn + " minuts");
                 break;
@@ -733,24 +745,28 @@ public static void disminuirTempsTemporitzadorForn() {
         int seleccio = scanner.nextInt();
         switch (seleccio) {
             case 1:
-                temporitzadorForn -= 5; 
+            for (int i= 0; i<5; i++)
+                temporitzadorForn --;
                 System.out.println("El temps del temporitzador del forn s'ha disminuït en 5 minuts.");
                 System.out.println("Temps actual del temporitzador del forn: " + temporitzadorForn + " minuts");
                 break;
             case 2:
-                temporitzadorForn -= 10; 
+            for (int i=0; i<10; i++)
+                temporitzadorForn --;
                 System.out.println("El temps del temporitzador del forn s'ha disminuït en 10 minuts.");
                 System.out.println("Temps actual del temporitzador del forn: " + temporitzadorForn + " minuts");
                 break;
             case 3:
-                temporitzadorForn -= 30; 
+            for (int i=0; i<30; i++)
+                temporitzadorForn --; 
                 System.out.println("El temps del temporitzador del forn s'ha disminuït en 30 minuts.");
                 System.out.println("Temps actual del temporitzador del forn: " + temporitzadorForn + " minuts");
                 break;
             case 4:
                 System.out.println("Introdueix la quantitat a disminuir en minuts:");
                 int quantitatDisminuir = scanner.nextInt();
-                temporitzadorForn -= quantitatDisminuir; 
+                for (int i= 0; i <quantitatDisminuir; i++)
+                temporitzadorForn --;
                 System.out.println("El temps del temporitzador del forn s'ha disminuït en " + quantitatDisminuir + " minuts.");
                 System.out.println("Temps actual del temporitzador del forn: " + temporitzadorForn + " minuts");
                 break;
@@ -813,10 +829,10 @@ public static void apagarAutomaticForn() {
         int seleccio = scanner.nextInt();
         switch (seleccio) {
             case 1:
-                while (true) {
-                    System.out.println("Introdueix el temps per l'apagada automàtica en minuts:");
-                    int temps = scanner.nextInt();
-                    if (temps >= 0) {
+                for (;;) {
+                System.out.println("Introdueix el temps per l'apagada automàtica en minuts:");
+                int temps = scanner.nextInt();
+                if (temps >= 0) {
                         temporitzadorApagatForn = temps;
                         System.out.println("L'apagada automàtica del forn s'ha configurat a " + temporitzadorApagatForn + " minuts.");
                         break;
