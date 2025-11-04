@@ -1,5 +1,6 @@
 package Domotica;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class Domotica {
     static boolean h1 = false; // llums
@@ -24,7 +25,7 @@ public class Domotica {
             System.out.println("4. Consulta l'estat del forn"); 
             System.out.println("5. Consulta l'estat de les càmeres de seguretat"); 
             System.out.println("6. Sortir");
-            int seleccio = scanner.nextInt();
+            int seleccio = llegirInt("Selecciona una opció: ");
             switch (seleccio) {
                 case 1:
                     menuLlumsHabitacio();
@@ -47,7 +48,19 @@ public class Domotica {
                     break;
                 default:
                     System.out.println("Opció no vàlida.");
-                    break;
+        
+            }
+        }
+    }
+
+    public static int llegirInt (String missatge) {
+        while (true) {
+            System.out.println(missatge);
+            try {
+                return scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("ERROR: Introdueix un número vàlid.");
+                scanner.nextLine();
             }
         }
     }
@@ -65,7 +78,7 @@ public class Domotica {
             System.out.println("5. Habitació 2");
             System.out.println("6. Habitació 3");
             System.out.println("7. Sortir");
-            int seleccio = scanner.nextInt();
+            int seleccio = llegirInt("Selecciona una opció: ");
             switch (seleccio) {
                 case 1:
                     menuLlums();
@@ -102,7 +115,7 @@ public class Domotica {
             System.out.println("2. Encen les llums");
             System.out.println("3. Apaga les llums");
             System.out.println("4. Sortir");
-            int seleccio = scanner.nextInt();
+            int seleccio = llegirInt("Selecciona una opció: ");
             switch (seleccio) {
                 case 1:
                     llums(h1);
@@ -145,7 +158,7 @@ public class Domotica {
             System.out.println("5. Habitació 2");
             System.out.println("6. Habitació 3");
             System.out.println("7. Sortir");
-            int seleccio = scanner.nextInt();
+            int seleccio = llegirInt("Selecciona una opció: ");
             switch (seleccio) {
                 case 1:
                     temperatura(h2);
@@ -182,7 +195,7 @@ public class Domotica {
             System.out.println("2. Augmentar temperatura");
             System.out.println("3. Disminuir temperatura");
             System.out.println("4. Sortir");
-            int seleccio = scanner.nextInt();
+            int seleccio = llegirInt("Selecciona una opció: ");
             switch (seleccio) {
                 case 1:
                     consultaTemperatura();
@@ -214,7 +227,7 @@ public static void augmentarTemperatura() {
         System.out.println("1. Augmentar 1 grau");
         System.out.println("2. Escollir quantitat a augmentar");
         System.out.println("3. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
                 for (int i= 0; i<1; i++)
@@ -246,7 +259,7 @@ public static void disminuirTemperatura() {
         System.out.println("1. Disminuir 1 grau");
         System.out.println("2. Escollir quantitat a disminuir");
         System.out.println("3. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
             for (int i= 0; i<1; i++)
@@ -282,7 +295,7 @@ public static void menuCortines() {
     System.out.println("2. Escollir habitació de les cortines");
     System.out.println("3. Obrir/Tancar totes les cortines");
     System.out.println("4. Sortir");
-    int seleccio = scanner.nextInt();
+    int seleccio = llegirInt("Selecciona una opció: ");
     switch (seleccio) {
         case 1:
             estatCortines();
@@ -319,7 +332,7 @@ public static void cortinesHabitacio() {
         System.out.println("5. Habitació 2");
         System.out.println("6. Habitació 3");
         System.out.println("7. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
                 cortinesUnaHabitacio();
@@ -356,7 +369,7 @@ public static void cortinesUnaHabitacio() {
         System.out.println("2. Finestra 2");
         System.out.println("3. Finestra 3");
         System.out.println("4. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
                 tancarObrir();
@@ -384,7 +397,7 @@ public static void tancarObrir() {
         System.out.println("2. Obrir cortina");
         System.out.println("3. Tancar cortina");
         System.out.println("4. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
                 estatCortines();
@@ -424,7 +437,7 @@ public static void menuForn() {
         System.out.println("1. Funcions del forn");
         System.out.println("2. Encen/Apaga el forn");
         System.out.println("3. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
                 funcioForn();
@@ -457,7 +470,7 @@ public static void funcioForn() {
         System.out.println("4. Mode de cocció");
         System.out.println("5. Apagar forn automàticament"); 
         System.out.println("6. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
                 estatForn();
@@ -515,7 +528,7 @@ public static void temperaturaForn() {
         System.out.println("2. Augmentar temperatura del forn");
         System.out.println("3. Disminuir temperatura del forn");
         System.out.println("4. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
                 estatTemperaturaForn();
@@ -553,7 +566,7 @@ public static void augmentarTemperaturaForn() {
         System.out.println("1. Augmentar 10 graus");
         System.out.println("2. Escollir quantitat a augmentar");
         System.out.println("3. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
             for (int i= 0; i <10; i ++)
@@ -585,7 +598,7 @@ public static void disminuirTemperaturaForn() {
         System.out.println("1. Disminuir 10 graus");
         System.out.println("2. Escollir quantitat a disminuir");
         System.out.println("3. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
             for (int i= 0; i<10; i++)
@@ -617,7 +630,7 @@ public static void temporitzadorForn() {
         System.out.println("1. Consulta estat del temporitzador");
         System.out.println("2. Configura temporitzador");
         System.out.println("3. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
                 estatTemporitzadorForn();
@@ -645,7 +658,7 @@ public static void configurarTemporitzadorForn() {
         System.out.println("2. Augmentar/Disminuir temps del temporitzador");
         System.out.println("3. Cancel·lar temporitzador");
         System.out.println("4. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
             for (;;) { 
@@ -696,7 +709,7 @@ static void augmentarTempsTemporitzadorForn() {
         System.out.println("3. Augmentar 30 minuts");
         System.out.println("4. Agumentar quantitat personalitzada");
         System.out.println("5. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
             for (int i= 0; i<5; i++)
@@ -742,7 +755,7 @@ public static void disminuirTempsTemporitzadorForn() {
         System.out.println("3. Disminuir 30 minuts");
         System.out.println("4. Disminuir quantitat personalitzada");
         System.out.println("5. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
             for (int i= 0; i<5; i++)
@@ -792,7 +805,7 @@ public static void modeCocio() {
         System.out.println("3. Mode Descongelar");
         System.out.println("4. Mode Eco");
         System.out.println("5. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
                 modeCocio = "Convecció";
@@ -826,7 +839,7 @@ public static void apagarAutomaticForn() {
         System.out.println("1. Determinar temps per apagada automàtica");
         System.out.println("2. Desactivar apagada automàtica");
         System.out.println("3. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
                 for (;;) {
@@ -862,7 +875,7 @@ public static void menuCameresSeguretat() {
     System.out.println("1. Escollir habitació");
     System.out.println("2. Encen/Apaga totes les cameres de seguretat");
     System.out.println("3. Sortir");
-    int seleccio = scanner.nextInt();
+    int seleccio = llegirInt("Selecciona una opció: ");
     switch (seleccio) { 
         case 1:
             cameresSeguretatHabitacio();
@@ -893,7 +906,7 @@ public static void cameresSeguretatHabitacio() {
     System.out.println("5. Habitació 2");
     System.out.println("6. Habitació 3");
     System.out.println("7. Sortir");
-    int seleccio = scanner.nextInt();
+    int seleccio = llegirInt("Selecciona una opció: ");
     switch (seleccio) {
         case 1:
             estatCameresSeguretat();
@@ -929,7 +942,7 @@ public static void estatCameresSeguretat() {
         System.out.println("1. Consulta video de la càmera de seguretat");
         System.out.println("2. Encen/Apaga la càmera de seguretat");
         System.out.println("3. Sortir");
-        int seleccio = scanner.nextInt();
+        int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
                 System.out.println("Mostrant video de la càmera de seguretat...");
