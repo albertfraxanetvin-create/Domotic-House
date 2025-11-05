@@ -844,7 +844,7 @@ public static void apagarAutomaticForn() {
             case 1:
                 for (;;) {
                 System.out.println("Introdueix el temps per l'apagada automàtica en minuts:");
-                int temps = scanner.nextInt();
+                int temps = llegirInt("Selecciona una opció: ");
                 if (temps >= 0) {
                         temporitzadorApagatForn = temps;
                         System.out.println("L'apagada automàtica del forn s'ha configurat a " + temporitzadorApagatForn + " minuts.");
