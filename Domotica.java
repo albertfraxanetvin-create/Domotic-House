@@ -15,9 +15,15 @@ public class Domotica {
     static String modeCocio = ""; // mode de cocció inicial
     static int temporitzadorApagatForn = 0; // temporitzador apagada automàtica forn inicial
 
-    static int horesForn = 0; // variables static per el funcionament del forn
+    // variables globals per el funcionament del forn
+    static int horesForn = 0;
     static int minutsForn = 0;
     static int segonsForn = 0;
+
+    // variables globals per l'apagada automàtica
+    static int horesApagatForn = 0;
+    static int minutsApagatForn = 0;
+    static int segonsApagatForn = 0;
 
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
@@ -519,10 +525,11 @@ public static void estatForn() {
     } else {
         System.out.println("Mode de cocció: No seleccionat");
     }
-    if (temporitzadorApagatForn > 0) { // apagada automàtica
-        System.out.println("Apagada automàtica: " + temporitzadorApagatForn + " minuts");
+    if (horesApagatForn > 0 || minutsApagatForn > 0 || segonsApagatForn > 0) { // apagada automàtica
+    System.out.printf("Apagada automàtica: %02d:%02d:%02d (h:m:s)%n",
+            horesApagatForn, minutsApagatForn, segonsApagatForn);
     } else {
-        System.out.println("Apagada automàtica: Desactivada");
+    System.out.println("Apagada automàtica: Desactivada");
     }
 }
 public static void temperaturaForn() {
@@ -753,28 +760,26 @@ public static void apagarAutomaticForn() {
     while (opcio) {
         System.out.println("Menu Configurar Apagada Automàtica Forn: ");
         System.out.println("1. Determinar temps per apagada automàtica");
-        System.out.println("2. Desactivar apagada automàtica");
-        System.out.println("3. Sortir");
+        System.out.println("2. Iniciar simulació d’apagada automàtica");
+        System.out.println("3. Desactivar apagada automàtica");
+        System.out.println("4. Sortir");
         int seleccio = llegirInt("Selecciona una opció: ");
         switch (seleccio) {
             case 1:
-                for (;;) {
-                System.out.println("Introdueix el temps per l'apagada automàtica en minuts:");
-                int temps = llegirInt("Selecciona una opció: ");
-                if (temps >= 0) {
-                        temporitzadorApagatForn = temps;
-                        System.out.println("L'apagada automàtica del forn s'ha configurat a " + temporitzadorApagatForn + " minuts.");
-                        break;
-                    } else {
-                        System.out.println("Si us plau, introdueix un valor vàlid (0 o més).");
-                    }
-                }
+                configurarTempsApagada();
                 break;
             case 2:
-                temporitzadorApagatForn = 0;
-                System.out.println("L'apagada automàtica del forn s'ha desactivat.");
+                if (horesApagatForn > 0 || minutsApagatForn > 0 || segonsApagatForn > 0) {
+                    iniciarApagadaAutomatica(horesApagatForn, minutsApagatForn, segonsApagatForn);
+                } else {
+                    System.out.println("El temps d'apagada automàtica no està configurat.");
+                }
                 break;
             case 3:
+                horesApagatForn = minutsApagatForn = segonsApagatForn = 0;
+                System.out.println("L'apagada automàtica s'ha desactivat.");
+                break;
+            case 4:
                 opcio = false;
                 System.out.println("Sortint del menu de configurar apagada automàtica del forn");
                 break;
@@ -782,6 +787,28 @@ public static void apagarAutomaticForn() {
                 System.out.println("Selecció no vàlida. Torna-ho a intentar.");
         }
     }
+}
+public static void configurarTempsApagada() {
+    System.out.println("Introdueix les hores per l'apagada automàtica:");
+    horesApagatForn = scanner.nextInt();
+    System.out.println("Introdueix els minuts:");
+    minutsApagatForn = scanner.nextInt();
+    System.out.println("Introdueix els segons:");
+    segonsApagatForn = scanner.nextInt();
+    System.out.printf("Apagada automàtica configurada a %02d:%02d:%02d (h:m:s)%n",
+            horesApagatForn, minutsApagatForn, segonsApagatForn);
+}
+public static void iniciarApagadaAutomatica(int hores, int minuts, int segons) {
+    System.out.printf("\n--- Apagada automàtica iniciada: %02d:%02d:%02d ---\n", hores, minuts, segons);
+    for (int h = hores; h >= 0; h--) {
+        for (int m = (h == hores ? minuts : 59); m >= 0; m--) {
+            for (int s = (h == hores && m == minuts ? segons : 59); s >= 0; s--) {
+                System.out.printf("Temps restant fins l'apagada: %02d:%02d:%02d%n", h, m, s);
+            }
+        }
+    }
+    System.out.println("El forn s'apaga automàticament...");
+    horesApagatForn = minutsApagatForn = segonsApagatForn = 0;
 }
 
 // funcions cameres de seguretat 
